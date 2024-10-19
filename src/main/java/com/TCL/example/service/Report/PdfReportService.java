@@ -66,17 +66,17 @@ public class PdfReportService {
                 List<OrderDetail> orderDetails = order.getOrderDetails();
                 DecimalFormat df = new DecimalFormat("#");
 
-                Paragraph storeName = new Paragraph("LaptopHaui", fontRed);
+                Paragraph storeName = new Paragraph("Laptop TCL", fontRed);
                 document.add(storeName);
 
                 Paragraph title = new Paragraph("Hoá đơn bán hàng", fontBoldBig);
                 title.setAlignment(Element.ALIGN_RIGHT);
                 document.add(title);
 
-                Paragraph storeAddress = new Paragraph("Địa chỉ: Số 68, Cầu Diễn, Từ Liêm, Hà Nội", font );
+                Paragraph storeAddress = new Paragraph("Địa chỉ: 153 Lê Thanh Nghị, Hai Bà Trưng, Hà Nội", font );
                 storeAddress.setAlignment(Element.ALIGN_LEFT);
 
-                Paragraph storePhone = new Paragraph("Số điện thoại: 0987654321" , font);
+                Paragraph storePhone = new Paragraph("Số điện thoại: 0965 821 551" , font);
                 storePhone.setAlignment(Element.ALIGN_LEFT);
 
                 // lấy ra tên nhân viên đang đăng nhập

@@ -71,10 +71,11 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST,"/register", "/forgot-password/**",
                                 "/api/auth/login", "/api/add-product-to-cart",
                                 "/api/products/**").permitAll()
-                        .requestMatchers("/admin").hasAnyRole("ADMIN","MANAGER","SELLER")
-                        .requestMatchers("/admin/product/**").hasRole("MANAGER")
-                        .requestMatchers("/admin/order/**").hasAnyRole("SELLER", "MANAGER")
-                        .requestMatchers("/admin/user/**").hasRole("ADMIN")
+                          .requestMatchers("/admin/**").hasRole("MANAGER")
+//                        .requestMatchers("/admin").hasAnyRole("ADMIN","MANAGER","SELLER")
+//                        .requestMatchers("/admin/product/**").hasRole("MANAGER")
+//                        .requestMatchers("/admin/order/**").hasAnyRole("SELLER", "MANAGER")
+//                        .requestMatchers("/admin/user/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement((sessionManagement) -> sessionManagement

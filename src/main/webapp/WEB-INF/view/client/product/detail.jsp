@@ -359,7 +359,7 @@
                                         <a href="#"><img width="30" height="30"
                                                          src="https://cdn.icon-icons.com/icons2/3911/PNG/512/acer_logo_icon_247729.png"
                                                          alt="lenovo" class="fas fa-apple-alt me-2"/>Acer</a>
-                                        <span>(${productCountByFactory[5].count})</span>
+                                        <span>(${productCountByFactory[4].count})</span>
                                     </div>
                                 </li>
                                 <li>
@@ -374,7 +374,7 @@
                                     <div class="d-flex justify-content-between fruite-name">
                                         <a href="#"><img width="32" height="32" src="/images/product/lg_logo.jpg"
                                                          alt="lenovo" class="fas fa-apple-alt me-2"/>LG</a>
-                                        <span>(${productCountByFactory[4].count})</span>
+                                        <span>(${productCountByFactory[5].count})</span>
                                     </div>
                                 </li>
                             </ul>
@@ -495,7 +495,7 @@
             });
         });
 
-        $('.submitReply').click(function (){
+        $('.submitReply').click(function () {
             let userName = '${sessionScope.fullName}';
             let emailUser = '${sessionScope.email}';
             let rating = $('#rateReply').val();
@@ -504,7 +504,9 @@
             let content = $('#replyMessage').val();
             let parentCommentId = $('#parentCommentId').val();
             let id = ${product.id};
+            let id_c = ${comment.id};
 
+            // Thay đổi ở đây: không cần reload trang sau khi gửi phản hồi
             $.ajax({
                 url: `/api/products/${id}/comments`,
                 type: 'POST',
@@ -513,11 +515,12 @@
                     'X-CSRF-TOKEN': csrfToken  // Gửi CSRF token trong header
                 },
                 data: JSON.stringify({
-                    rate: rating,
+                    rate: null,
                     userName: name,
                     email: email,
                     message: content,
-                    parentCommentId: parentCommentId
+                    parentCommentId: null
+
                 }),
                 success: function (response) {
                     console.log(response);
@@ -533,7 +536,8 @@
                         position: 'top-right',
                         icon: 'success'
                     });
-                    location.href = '/product/${id}';
+                    // Cập nhật giao diện mà không cần reload trang
+                    // Thêm mã để hiển thị phản hồi mới ở đây
                 },
                 error: function (response) {
                     console.log(response.message);
@@ -550,8 +554,8 @@
                         icon: 'error'
                     });
                 }
-            })
-        })
+            });
+        });
 
 
     });
