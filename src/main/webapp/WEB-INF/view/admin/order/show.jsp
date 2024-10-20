@@ -89,14 +89,21 @@
                                         </a>
                                     </li>
 
-                                    <c:forEach begin="0" end="${totalPages -1}" varStatus="loop">
+                                    <c:forEach begin="0" end="${totalPages > 0 ? totalPages - 1 : 0}" varStatus="loop">
                                         <li class="page-item">
                                             <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'} "
-                                            href="#" data-page="${loop.index + 1}">
-                                                    ${loop.index + 1}
+                                               href="#" data-page="${loop.index + 1}">
+                                                ${loop.index + 1}
                                             </a>
                                         </li>
                                     </c:forEach>
+
+<c:if test="${totalPages == 0}">
+    <div class="alert alert-warning" role="alert">
+        Không có trang nào để hiển thị.
+    </div>
+</c:if>
+
                                     <li class="page-item">
                                         <a class="${currentPage eq totalPages ? 'disabled page-link' : 'page-link'}"
                                            href="/admin/order?page=${currentPage + 1}" aria-label="Next">

@@ -247,7 +247,6 @@
                                                 </c:choose>
                                             </c:forEach>
                                         </div>
-                                        <button class="btn btn-link reply-button" data-comment-id="${comment.id}">Reply</button>
                                         <div class="reply-form" id="reply-form-${comment.id}" style="display: none;">
                                             <form:form method="post">
                                                 <input type="hidden" id="parentCommentId" value="${comment.id}">
@@ -487,75 +486,7 @@
             });
         });
 
-        document.querySelectorAll('.reply-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const commentId = button.getAttribute('data-comment-id');
-                const replyForm = document.getElementById(`reply-form-` + commentId);
-                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
-            });
-        });
 
-        $('.submitReply').click(function () {
-            let userName = '${sessionScope.fullName}';
-            let emailUser = '${sessionScope.email}';
-            let rating = $('#rateReply').val();
-            let name = userName ? userName : $('#name').val();
-            let email = emailUser ? emailUser : $('#email').val();
-            let content = $('#replyMessage').val();
-            let parentCommentId = $('#parentCommentId').val();
-            let id = ${product.id};
-            let id_c = ${comment.id};
-
-            // Thay đổi ở đây: không cần reload trang sau khi gửi phản hồi
-            $.ajax({
-                url: `/api/products/${id}/comments`,
-                type: 'POST',
-                contentType: 'application/json',
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken  // Gửi CSRF token trong header
-                },
-                data: JSON.stringify({
-                    rate: null,
-                    userName: name,
-                    email: email,
-                    message: content,
-                    parentCommentId: null
-
-                }),
-                success: function (response) {
-                    console.log(response);
-                    $.toast({
-                        text: 'Đánh giá thành công',
-                        showHideTransition: 'slide',
-                        bgColor: '#28a745',
-                        textColor: 'white',
-                        allowToastClose: true,
-                        hideAfter: 1000,
-                        stack: 5,
-                        textAlign: 'left',
-                        position: 'top-right',
-                        icon: 'success'
-                    });
-                    // Cập nhật giao diện mà không cần reload trang
-                    // Thêm mã để hiển thị phản hồi mới ở đây
-                },
-                error: function (response) {
-                    console.log(response.message);
-                    $.toast({
-                        text: 'Đánh giá thất bại',
-                        showHideTransition: 'slide',
-                        bgColor: '#dc3545',
-                        textColor: 'white',
-                        allowToastClose: true,
-                        hideAfter: 1000,
-                        stack: 5,
-                        textAlign: 'left',
-                        position: 'top-right',
-                        icon: 'error'
-                    });
-                }
-            });
-        });
 
 
     });

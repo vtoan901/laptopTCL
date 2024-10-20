@@ -10,13 +10,13 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Thống kê
                 </a>
-                <c:if test="${sessionScope.role == 'MANAGER'}">
+                <c:if test="${sessionScope.role == 'ADMIN'}">
                     <a class="nav-link" href="/admin/user">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Tài khoản
                     </a>
                 </c:if>
-                <c:if test="${sessionScope.role == 'MANAGER'}">
+                <c:if test="${sessionScope.role == 'ADMIN'}">
                 <a class="nav-link" href="/admin/product">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Sản phẩm

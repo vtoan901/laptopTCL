@@ -39,9 +39,8 @@
                                 <select id="roleDes" style="min-width: 200px; max-height: 40px">
                                     <option value="Tất cả" ${roleDes == '' ? 'selected' : ''}>Tất cả</option>
                                     <option value="Admin" ${roleDes == 'Admin' ? 'selected' : ''}>Admin</option>
-                                    <option value="Quản lý" ${roleDes == 'Quản lý' ? 'selected' : ''}>Quản lý</option>
-                                    <option value="Nhân viên bán hàng" ${roleDes == 'Nhân viên bán hàng' ? 'selected' : ''}>Nhân viên</option>
-                                    <option value="User thong thuong" ${roleDes == 'User thong thuong' ? 'selected' : ''}>User</option>
+
+                                    <option value="User" ${roleDes == 'User' ? 'selected' : ''}>User</option>
                                 </select>
                                 <a href="/admin/user/create" class="btn btn-primary">Tạo tài khoản</a>
                             </div>
@@ -125,7 +124,7 @@
             let page = $(this).attr('href'); // Lấy URL trên thẻ <a>
             let keyword = $('#keyword').val(); // Lấy giá trị từ ô input
             let roleDes = $('#roleDes').val(); // Lấy giá trị từ select box
-            if(roleDes == "Tất cả") roleDes='';
+            if(roleDes == "Tất cả"){ roleDes=''};
 
             // Thêm giá trị của ô input và select box vào URL
             page += `&fullName=` + keyword + `&roleDes=` + roleDes;

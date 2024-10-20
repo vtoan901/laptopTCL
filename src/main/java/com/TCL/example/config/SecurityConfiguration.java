@@ -71,7 +71,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST,"/register", "/forgot-password/**",
                                 "/api/auth/login", "/api/add-product-to-cart",
                                 "/api/products/**").permitAll()
-                          .requestMatchers("/admin/**").hasRole("MANAGER")
+                          .requestMatchers("/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/admin").hasAnyRole("ADMIN","MANAGER","SELLER")
 //                        .requestMatchers("/admin/product/**").hasRole("MANAGER")
 //                        .requestMatchers("/admin/order/**").hasAnyRole("SELLER", "MANAGER")
